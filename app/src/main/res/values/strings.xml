@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">MET Attendance App</string>
+    <array name="select_your_type">
+        <item>Admin</item>
+        <item>Teacher</item>
+        <item>Student</item>
+
+    </array>
+</resources>
