@@ -12,7 +12,6 @@ import android.content.Intent;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -28,12 +27,11 @@ public class login_activity extends AppCompatActivity implements AdapterView.OnI
 
     String item;
     String userid,pass;
-    private FirebaseAnalytics mFirebaseAnalytics;
     Bundle basket;
     //DatabaseReference ref;
 
     ProgressDialog mDialog;
-    public static long backpreesed;
+    public static long back_pressed;
     DatabaseReference ref;
     EditText username;
     EditText password;
@@ -147,9 +145,11 @@ public class login_activity extends AppCompatActivity implements AdapterView.OnI
         else if (item == "Admin" && pass.equalsIgnoreCase(this.dbpassword) ) {
             if (userid.equalsIgnoreCase("admin") && pass.equals("admin")) {
             mDialog.dismiss();
+            Toast.makeText(getApplicationContext(),"Log in succesful",Toast.LENGTH_LONG).show();
             Intent intent = new Intent(this, admin.class);
             intent.putExtras(basket);
             startActivity(intent);
+
             }
         }
         else if (item == "Student" && pass.equalsIgnoreCase(this.dbpassword)) {
@@ -161,6 +161,18 @@ public class login_activity extends AppCompatActivity implements AdapterView.OnI
         else if(! pass.equalsIgnoreCase(this.dbpassword)){
             Toast.makeText(getApplicationContext(),"UserId or Password is Incorrect", Toast.LENGTH_LONG).show();
 
+        }
+    }
+    @Override
+    public void onBackPressed() {
+        if (back_pressed + 2000 > System.currentTimeMillis()){
+            super.onBackPressed();
+            finish();
+            System.exit(0);
+        }
+        else {
+            Toast.makeText(getBaseContext(), "Press once again to exit", Toast.LENGTH_SHORT).show();
+            back_pressed = System.currentTimeMillis();
         }
     }
 
