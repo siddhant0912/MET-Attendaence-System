@@ -20,6 +20,10 @@
         </activity>
         <activity android:name=".login_activity"/>
         <activity android:name=".admin"/>
+        <activity android:name=".teacherlogin"/>
+        <activity android:name=".studentlogin"/>
+        <activity android:name=".addstudent"/>
+        <activity android:name=".addteacher"/>
 
     </application>
 

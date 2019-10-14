@@ -10,9 +10,11 @@ import android.widget.Toast;
 import android.widget.Spinner;
 import android.content.Intent;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -27,7 +29,9 @@ public class login_activity extends AppCompatActivity implements AdapterView.OnI
 
     String item;
     String userid,pass;
+    private FirebaseAuth mAuth;
     Bundle basket;
+
     //DatabaseReference ref;
 
     ProgressDialog mDialog;
@@ -40,8 +44,8 @@ public class login_activity extends AppCompatActivity implements AdapterView.OnI
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-        //retrieving student id from firebase
+        mAuth = FirebaseAuth.getInstance();
+        //retrieving studentlogin id from firebase
         username = (EditText) findViewById(R.id.username);
         password = (EditText) findViewById(R.id.password);
 
@@ -92,7 +96,7 @@ public class login_activity extends AppCompatActivity implements AdapterView.OnI
         DatabaseReference dbuser = ref.child(item).child(userid);
         dbuser.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 String dbchild = null;
                 try {
                     if (item == "Admin") {
@@ -110,7 +114,7 @@ public class login_activity extends AppCompatActivity implements AdapterView.OnI
                             dbchild = "tpass";
                         }
 
-                        dbpassword = dataSnapshot.child(dbchild).getValue(String.class);
+                        dbpassword = dataSnapshot.child( dbchild).getValue(String.class);
                         verify(dbpassword);
                     }
                 }
@@ -121,7 +125,7 @@ public class login_activity extends AppCompatActivity implements AdapterView.OnI
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {
+            public void onCancelled(@NonNull DatabaseError databaseError) {
                 Toast.makeText(getApplicationContext(), "something went wrong", Toast.LENGTH_LONG).show();
             }
         });
@@ -136,25 +140,25 @@ public class login_activity extends AppCompatActivity implements AdapterView.OnI
         if (item == "Teacher" && pass.equalsIgnoreCase(this.dbpassword)) {
 
             mDialog.dismiss();
-            Intent intent = new Intent(this, teacher.class);
+            Intent intent = new Intent(this, teacherlogin.class);
             intent.putExtras(basket);
             startActivity(intent);
 
         }
 
         else if (item == "Admin" && pass.equalsIgnoreCase(this.dbpassword) ) {
-            if (userid.equalsIgnoreCase("admin") && pass.equals("admin")) {
+           // if (userid.equalsIgnoreCase("admin") && pass.equals("admin")) {
             mDialog.dismiss();
-            Toast.makeText(getApplicationContext(),"Log in succesful",Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(),"Log in successful",Toast.LENGTH_LONG).show();
             Intent intent = new Intent(this, admin.class);
             intent.putExtras(basket);
             startActivity(intent);
 
-            }
+            //}
         }
         else if (item == "Student" && pass.equalsIgnoreCase(this.dbpassword)) {
             mDialog.dismiss();
-            Intent intent = new Intent(this, student.class);
+            Intent intent = new Intent(this, studentlogin.class);
             intent.putExtras(basket);
             startActivity(intent);
         }

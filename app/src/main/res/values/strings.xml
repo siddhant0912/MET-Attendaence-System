@@ -4,6 +4,13 @@
         <item>Admin</item>
         <item>Teacher</item>
         <item>Student</item>
+    </array>
+    <array name="classes">
+        <item>select Class</item>>
+        <item>SE-A</item>
+        <item>SE-B</item>
+        <item>TE</item>
+        <item>BE</item>
 
     </array>
 </resources>
