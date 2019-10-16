@@ -23,7 +23,7 @@ public class addteacher extends AppCompatActivity{
     Spinner classes;
     Button addButton;
     DatabaseReference databaseTeacher;
-    //Toolbar mToolbar;
+    Toolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,11 +37,8 @@ public class addteacher extends AppCompatActivity{
         subject =  (EditText) findViewById(R.id.editText4);
         classes = (Spinner) findViewById(R.id.spinner3);
         tpassword =  (EditText) findViewById(R.id.editText5);
-        //mToolbar=(Toolbar)findViewById(R.id.ftoolbar);
-        //setSupportActionBar(mToolbar);
-        //getSupportActionBar().setTitle("Add/Remove Teacher");
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        mToolbar=(Toolbar)findViewById(R.id.ftoolbar);
+        mToolbar.setTitle("Add/Remove Teacher");
 
 
     }

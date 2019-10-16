@@ -3,8 +3,7 @@ package com.example.metattendanceapp;
 import android.view.View;
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.appcompat.widget.Toolbar;
-
+import android.widget.Toolbar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,7 +19,7 @@ public class studentlogin extends AppCompatActivity {
     String message;
     String date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
     Toolbar mToolbar;
-    DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Teacher");
+    DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Student");
     private static long back_pressed;
 
     @Override
@@ -30,8 +29,8 @@ public class studentlogin extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
         message = bundle.getString("message");
-        //mToolbar = (Toolbar) findViewById(R.id.ftoolbar);
-        //mToolbar.setTitle(message + " | Dashboard |" + "(" + date + ")");
+        mToolbar = (Toolbar) findViewById(R.id.ftoolbar);
+        mToolbar.setTitle("Student's| Dashboard |" + "(" + date + ")");
         TextView txtView = (TextView) findViewById(R.id.textView1);
         txtView.setText("Welcome :" + message);
 

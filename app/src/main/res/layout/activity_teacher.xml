@@ -9,6 +9,15 @@
     tools:context="com.example.metattendanceapp.teacherlogin"
     android:background="@drawable/background">
 
+    <include
+
+        android:id="@+id/ftoolbar"
+        layout="@layout/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        tools:layout_editor_absoluteX="8dp"
+        />
+
 
     <TextView
         android:id="@+id/textView1"
@@ -108,7 +117,7 @@
             android:layout_height="41dp"
             android:layout_above="@+id/spinner2"
             android:layout_alignParentEnd="true"
-            android:layout_marginEnd="69dp"
+            android:layout_marginEnd="40dp"
             android:layout_marginBottom="41dp"
             android:text="Select Your Class"
             android:textColor="#000"

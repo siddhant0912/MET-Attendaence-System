@@ -4,7 +4,7 @@ import android.view.View;
 
 import android.content.Intent;
 
-//import android.widget.Toolbar;
+import android.widget.Toolbar;
 
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -23,7 +23,7 @@ public class teacherlogin extends AppCompatActivity  implements AdapterView.OnIt
 
       String item;
       String message;
-      //Toolbar mToolbar;
+      Toolbar mToolbar;
     private static long back_pressed;
     String date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
     @Override
@@ -36,9 +36,8 @@ public class teacherlogin extends AppCompatActivity  implements AdapterView.OnIt
         //to get username from login page
         Bundle bundle1 = getIntent().getExtras();
         message = bundle1.getString("message");
-        //mToolbar=(Toolbar)findViewById(R.id.takeattendancebar);
-        //setSupportActionBar(mToolbar);
-        //getSupportActionBar().setTitle(message+"'s Dashboard  - "+date);
+        mToolbar=(Toolbar)findViewById(R.id.ftoolbar);
+        mToolbar.setTitle("Teacher's| Dashboard |" + "(" + date + ")");
 
         TextView txtView = (TextView) findViewById(R.id.textView1);
         txtView.setText("Welcome :" + message);

@@ -21,7 +21,7 @@ public class addstudent extends AppCompatActivity{
     String sname,sid,classname,spass;
     Spinner classes;
     DatabaseReference databaseStudent;
-    //Toolbar mToolbar;
+    Toolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,10 +34,9 @@ public class addstudent extends AppCompatActivity{
         Sid =  (EditText) findViewById(R.id.editText3);
         classes = (Spinner) findViewById(R.id.spinner3);
         spassword = (EditText) findViewById(R.id.editText4);
-        //mToolbar=(Toolbar)findViewById(R.id.ftoolbar);
-        //setSupportActionBar(mToolbar);
-        //getSupportActionBar().setTitle("Add/Remove Student");
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        mToolbar=(Toolbar)findViewById(R.id.ftoolbar);
+        mToolbar.setTitle("Add/Remove Student");
+
 
     }
 
