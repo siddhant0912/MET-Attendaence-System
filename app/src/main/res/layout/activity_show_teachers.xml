@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/transparent"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    tools:context=".show_teachers"
+    android:layout_height="match_parent">
+
+    <TextView
+
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+        android:id="@+id/textViewtid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextViewtid" />
+
+    <TextView
+
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+        android:id="@+id/textViewstname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextViewtname"/>
+
+    <TextView
+        android:id="@+id/textViewstclasses"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextViewsclasses" />
+
+    <TextView
+        android:id="@+id/textViewsubject"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:text="TextViewsubject" />
+
+
+</LinearLayout>

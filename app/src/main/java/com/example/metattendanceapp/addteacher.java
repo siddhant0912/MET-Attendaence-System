@@ -1,6 +1,7 @@
 package com.example.metattendanceapp;
 
 import android.os.Bundle;
+import android.widget.ListView;
 import android.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.MenuItem;
@@ -10,18 +11,26 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class addteacher extends AppCompatActivity{
+import java.util.ArrayList;
+import java.util.List;
 
+public class addteacher extends AppCompatActivity{
+    ListView listViewteacher;
+    List<Teacher> teacherList;
     EditText Tname;
     EditText Tid;
     EditText subject,tpassword;
     String tname,tid,sub,classname,tpass;
     Spinner classes;
-    Button addButton;
     DatabaseReference databaseTeacher;
     Toolbar mToolbar;
 
@@ -31,7 +40,8 @@ public class addteacher extends AppCompatActivity{
         setContentView(R.layout.activity_addteacher);
 
         databaseTeacher = FirebaseDatabase.getInstance().getReference("Teacher");
-
+        listViewteacher = (ListView) findViewById(R.id.listViewteachers);
+        teacherList =new ArrayList<>();
         Tname =  (EditText) findViewById(R.id.editText1);
         Tid =  (EditText) findViewById(R.id.editText3);
         subject =  (EditText) findViewById(R.id.editText4);
@@ -41,6 +51,29 @@ public class addteacher extends AppCompatActivity{
         mToolbar.setTitle("Add/Remove Teacher");
 
 
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        databaseTeacher.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                teacherList.clear();
+                for(DataSnapshot teachsnap : dataSnapshot.getChildren()){
+                    Teacher teacher = teachsnap.getValue(Teacher.class);
+                    teacherList.add(teacher);
+
+                }
+                show_teachers adaptor = new show_teachers(addteacher.this, teacherList);
+                listViewteacher.setAdapter(adaptor);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
     public void addTeacher(View view) {

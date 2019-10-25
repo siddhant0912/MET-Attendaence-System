@@ -9,7 +9,9 @@ class Student {
     String classes;
     String spass;
 
+public Student(){
 
+}
     public Student(String sname, String sid,String classes,String spass) {
         this.sname = sname;
         this.sid = sid;

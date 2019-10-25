@@ -7,6 +7,10 @@ public class Teacher {
     String subject;
     String classes;
     String tpass;
+    public  Teacher()
+    {
+
+    }
 
 
     public Teacher(String tname, String tid, String subject, String classes, String tpass) {

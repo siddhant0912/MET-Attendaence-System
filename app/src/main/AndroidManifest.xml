@@ -23,7 +23,17 @@
         <activity android:name=".teacherlogin"/>
         <activity android:name=".studentlogin"/>
         <activity android:name=".addstudent"/>
+        <activity android:name=".Student"/>
         <activity android:name=".addteacher"/>
+        <activity android:name=".Teacher"/>
+        <activity android:name=".takeAttendance"/>
+        <activity android:name=".teacher_attendanceSheet"/>
+        <activity android:name=".show_students"/>
+        <activity android:name=".show_teachers"/>
+        <activity android:name=".student_attendance_sheet"/>
+        <activity android:name=".admin_attendanceSheet"/>
+
+
 
     </application>
 

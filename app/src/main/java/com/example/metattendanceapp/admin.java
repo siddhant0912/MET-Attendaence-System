@@ -90,6 +90,9 @@ public class admin extends AppCompatActivity {
     }
 
     public void attendanceRecord(View view) {
+        Intent intent = new Intent(this, admin_attendanceSheet.class);
+        startActivity(intent);
+
     }
 
     public void changepassword(View view) {

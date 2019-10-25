@@ -78,7 +78,7 @@ public class teacherlogin extends AppCompatActivity  implements AdapterView.OnIt
         basket.putString("tid", message);
 
 
-        Intent intent = new Intent(this, takeAttendance.class);
+        Intent intent = new Intent(this, teacher_attendanceSheet.class);
         intent.putExtras(basket);
         startActivity(intent);
     }
@@ -89,7 +89,7 @@ public class teacherlogin extends AppCompatActivity  implements AdapterView.OnIt
         basket.putString("tid", message);
 
 
-        Intent intent = new Intent(this, teacher_attendanceSheet.class);
+        Intent intent = new Intent(this, takeAttendance.class);
         intent.putExtras(basket);
         startActivity(intent);
     }

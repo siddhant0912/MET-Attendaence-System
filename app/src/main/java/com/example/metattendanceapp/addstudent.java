@@ -1,18 +1,25 @@
 package com.example.metattendanceapp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.MenuItem;
+import android.widget.ListView;
 import android.widget.Toolbar;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class addstudent extends AppCompatActivity{
 
@@ -21,6 +28,8 @@ public class addstudent extends AppCompatActivity{
     String sname,sid,classname,spass;
     Spinner classes;
     DatabaseReference databaseStudent;
+    ListView listViewstudent;
+    List<Student> studentList;
     Toolbar mToolbar;
 
     @Override
@@ -29,7 +38,8 @@ public class addstudent extends AppCompatActivity{
         setContentView(R.layout.activity_addstudent);
 
         databaseStudent = FirebaseDatabase.getInstance().getReference("Student");
-
+        listViewstudent = (ListView) findViewById(R.id.listviewstudent);
+        studentList =new ArrayList<>();
         Sname =  (EditText) findViewById(R.id.editText1);
         Sid =  (EditText) findViewById(R.id.editText3);
         classes = (Spinner) findViewById(R.id.spinner3);
@@ -40,7 +50,28 @@ public class addstudent extends AppCompatActivity{
 
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        databaseStudent.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                studentList.clear();
+               for(DataSnapshot studentsnap : dataSnapshot.getChildren())
+               {
+                   Student student = studentsnap.getValue(Student.class);
+                   studentList.add(student);
+               }
+               show_students adaptor = new show_students(addstudent.this, studentList);
+               listViewstudent.setAdapter(adaptor);
+            }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
 
     public void addStudent(View view) {
 
