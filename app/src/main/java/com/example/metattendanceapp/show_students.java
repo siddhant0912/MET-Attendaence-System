@@ -30,12 +30,14 @@ public class show_students extends ArrayAdapter<Student> {
 
         View listViewItem = inflater.inflate(R.layout.activity_show_students,null,true);
         TextView textviewsid = (TextView) listViewItem.findViewById(R.id.textViewsid);
-        TextView textviewsclass = (TextView) listViewItem.findViewById(R.id.textViewsname);
-        TextView textviewsname = (TextView) listViewItem.findViewById(R.id.textViewsclass);
+        TextView textviewsname = (TextView) listViewItem.findViewById(R.id.textViewsname);
+        TextView textviewsclass = (TextView) listViewItem.findViewById(R.id.textViewsclass);
+        TextView textViewspass = (TextView)listViewItem.findViewById(R.id.textViewspass);
 
         Student student = studentlist.get(position);
         textviewsid.setText(student.getSid());
         textviewsname.setText(student.getSname());
+        textViewspass.setText(student.getspass());
         textviewsclass.setText(student.getClasses());
 
         return   listViewItem;

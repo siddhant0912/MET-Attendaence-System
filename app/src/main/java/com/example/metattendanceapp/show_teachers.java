@@ -35,6 +35,7 @@ public class show_teachers extends ArrayAdapter<Teacher> {
         TextView textviewstclass = (TextView) listViewItem.findViewById(R.id.textViewstclasses);
         TextView textviewsubject = (TextView) listViewItem.findViewById(R.id.textViewsubject);
 
+
         Teacher teacher = teacherList.get(position);
         textviewtid.setText(teacher.getTid());
         textViewtname.setText(teacher.getTname());

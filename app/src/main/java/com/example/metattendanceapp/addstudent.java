@@ -86,6 +86,7 @@ public class addstudent extends AppCompatActivity{
             Student student =new Student(sname ,sid,classname,spass );
             databaseStudent.child(sid).setValue(student);
             Toast.makeText(getApplicationContext(),"student added successfully", Toast.LENGTH_LONG).show();
+            finish();
 
         }else {
             Toast.makeText(getApplicationContext(),"fields cannot be empty", Toast.LENGTH_LONG).show();
@@ -98,6 +99,7 @@ public class addstudent extends AppCompatActivity{
             sid = Sid.getText().toString();
             databaseStudent.child(sid).setValue(null);
             Toast.makeText(getApplicationContext(),"student removed successfully", Toast.LENGTH_LONG).show();
+            finish();
 
         }else {
             Toast.makeText(getApplicationContext(),"id cannot be empty", Toast.LENGTH_LONG).show();

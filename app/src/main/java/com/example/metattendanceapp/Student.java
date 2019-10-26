@@ -1,6 +1,5 @@
 package com.example.metattendanceapp;
-import android.widget.EditText;
-import android.widget.Spinner;
+
 
 
 class Student {
@@ -19,14 +18,21 @@ public Student(){
         this.spass = spass;
     }
 
-    public String getSname() { return sname; }
+    public String getSname() {
+    return sname;
+    }
 
     public String getSid() {
-        return sid;
+
+    return sid;
     }
     public String getClasses() {
-        return classes;
+
+    return classes;
     }
 
-    public String getspass() { return spass; }
+    public String getspass() {
+
+    return spass;
+    }
 }
