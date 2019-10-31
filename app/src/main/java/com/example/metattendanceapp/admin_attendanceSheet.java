@@ -59,7 +59,7 @@ public class admin_attendanceSheet extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // Result will be holded Here
 
-                Studentlist.add("      SID                    "+"p1  "+"p2  "+"p3  "+"p4  "+ "p5  "+"p6  "+"p7  "+"p8");
+                Studentlist.add("    SID                    "+"p1  "+"p2  "+"p3  "+"p4  "+"p5  "+"p6  "+"p7  "+"p8");
                 for (Object sid : userlist) {
 
                     //DataSnapshot dsp=dataSnapshot.child(sid.toString());
@@ -71,7 +71,7 @@ public class admin_attendanceSheet extends AppCompatActivity {
                     String p6=dataSnapshot.child(sid.toString()).child("p6").getValue().toString().substring(0,1);
                     String p7=dataSnapshot.child(sid.toString()).child("p7").getValue().toString().substring(0,1);
                     String p8=dataSnapshot.child(sid.toString()).child("p8").getValue().toString().substring(0,1);
-                    Studentlist.add(dataSnapshot.child(sid.toString()).getKey().toString()+"    "+p1+"     "+p2+"     "+p3+"     "+p4+"      "+p5+"       "+p6+"      "+p7+"      "+p8); //add result into array list
+                    Studentlist.add(dataSnapshot.child(sid.toString()).getKey().toString()+"   "+p1+"    "+p2+"    "+p3+"    "+p4+"    "+p5+"    "+p6+"    "+p7+"    "+p8); //add result into array list
                 }
                 //Toast.makeText(getApplicationContext(),Studentlist.toString(), Toast.LENGTH_LONG).show();
                 list(Studentlist);

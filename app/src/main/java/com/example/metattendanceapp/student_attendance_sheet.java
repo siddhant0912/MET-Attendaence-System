@@ -40,7 +40,7 @@ public class student_attendance_sheet extends AppCompatActivity{
         t.setText(student_id);
 
         dates.clear();
-        dates.add("       Date          "+"p1  "+"p2  "+"p3  "+"p4   "+ "p5   "+"p6  "+"p7  "+"p8");
+        dates.add("       Date          "+"p1  "+"p2  "+"p3  "+"p4  "+ "p5  "+"p6  "+"p7  "+"p8");
 
         dbAttendance = ref.child("attendance");
         dbAttendance.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -55,7 +55,7 @@ public class student_attendance_sheet extends AppCompatActivity{
                     p6 = dsp.child(student_id).child("p6").getValue().toString().substring(0, 1);
                     p7 = dsp.child(student_id).child("p7").getValue().toString().substring(0, 1);
                     p8 = dsp.child(student_id).child("p8").getValue().toString().substring(0, 1);
-                    dates.add(dsp.getKey() + "    " + p1 + "     " + p2 + "     " + p3 + "     " + p4 + "      " + p5 + "       " + p6 + "      " + p7 + "      " + p8); //add result into array list
+                    dates.add(dsp.getKey() + "    " + p1 +"    " + p2 +"    " + p3 +"    " + p4 +"     "+ p5 +"    "+ p6+"    "+ p7 +"    "+ p8); //add result into array slist
 
 
                     // Toast.makeText(getApplicationContext(),dsp.child(student_id).child("p1").getValue().toString(),Toast.LENGTH_LONG).show();

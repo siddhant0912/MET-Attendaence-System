@@ -18,7 +18,7 @@ public class show_teachers extends ArrayAdapter<Teacher> {
     private List<Teacher> teacherList;
 
     public show_teachers(Activity context, List<Teacher> teacherList){
-        super(context, R.layout.activity_show_teachers);
+        super(context, R.layout.activity_show_teachers,teacherList);
         this.context=context;
         this.teacherList=teacherList;
 
@@ -34,12 +34,13 @@ public class show_teachers extends ArrayAdapter<Teacher> {
         TextView textViewtname = (TextView)  listViewItem.findViewById(R.id.textViewstname);
         TextView textviewstclass = (TextView) listViewItem.findViewById(R.id.textViewstclasses);
         TextView textviewsubject = (TextView) listViewItem.findViewById(R.id.textViewsubject);
-
+        TextView textviewpassowrd = (TextView)listViewItem.findViewById(R.id.textViewpassword);
 
         Teacher teacher = teacherList.get(position);
         textviewtid.setText(teacher.getTid());
         textViewtname.setText(teacher.getTname());
         textviewstclass.setText(teacher.getClasses());
+        textviewpassowrd.setText(teacher.gettpass());
         textviewsubject.setText(teacher.getSubject());
 
         return   listViewItem;

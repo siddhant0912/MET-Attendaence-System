@@ -135,8 +135,10 @@
     </LinearLayout>
 
     <ListView
+
         android:id="@+id/listviewstudent"
         android:layout_width="match_parent"
+        android:listSelector="@drawable/bottom"
         android:layout_height="match_parent" />
 
 </LinearLayout>

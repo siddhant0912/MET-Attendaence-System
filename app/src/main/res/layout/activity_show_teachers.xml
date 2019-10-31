@@ -22,18 +22,25 @@
         android:text="TextViewtname"/>
 
     <TextView
-        android:id="@+id/textViewstclasses"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TextViewsclasses" />
-
-    <TextView
         android:id="@+id/textViewsubject"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:text="TextViewsubject" />
+
+    <TextView
+        android:id="@+id/textViewpassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextViewpassword"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+    <TextView
+        android:id="@+id/textViewstclasses"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextViewsclasses"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
 
 </LinearLayout>
