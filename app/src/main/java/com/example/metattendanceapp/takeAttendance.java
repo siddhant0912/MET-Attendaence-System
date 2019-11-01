@@ -141,6 +141,7 @@ public class takeAttendance extends  AppCompatActivity{
                     selItems = item;
                 else
                     selItems += "/" + item;
+
             }
             // Toast.makeText(this, selItems, Toast.LENGTH_LONG).show();
 
@@ -149,6 +150,7 @@ public class takeAttendance extends  AppCompatActivity{
             for (String item : nonselectedItems) {
                 Toast.makeText(this, "Attendance created Successfully", Toast.LENGTH_SHORT).show();
                 dbAttendance.child(item).child(periodno).setValue("A" + " / " + teacher_id);
+                finish();
                 //Toast.makeText(this, "absentees:" + nonselectedItems, Toast.LENGTH_LONG).show();
 
             }

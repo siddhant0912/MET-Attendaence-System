@@ -11,8 +11,9 @@
     <include
         android:id="@+id/studentsheet"
         layout="@layout/appbar"
-        android:layout_width="340dp"
-        android:layout_height="34dp"
+        android:layout_width="374dp"
+        android:layout_height="43dp"
+        android:layout_gravity="center"
         tools:layout_editor_absoluteX="8dp" />
 
     <TextView
