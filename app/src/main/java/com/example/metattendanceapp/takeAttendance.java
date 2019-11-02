@@ -143,7 +143,6 @@ public class takeAttendance extends  AppCompatActivity{
                     selItems += "/" + item;
 
             }
-            // Toast.makeText(this, selItems, Toast.LENGTH_LONG).show();
 
 
             //for making absent
@@ -151,7 +150,7 @@ public class takeAttendance extends  AppCompatActivity{
                 Toast.makeText(this, "Attendance created Successfully", Toast.LENGTH_SHORT).show();
                 dbAttendance.child(item).child(periodno).setValue("A" + " / " + teacher_id);
                 finish();
-                //Toast.makeText(this, "absentees:" + nonselectedItems, Toast.LENGTH_LONG).show();
+
 
             }
         }
