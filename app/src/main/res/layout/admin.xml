@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.metattendanceapp.admin"
     android:layout_width="match_parent"
-    android:background="@drawable/background"
+    android:background="@drawable/ad_back"
     android:layout_height="match_parent">
 
 <include
@@ -45,30 +45,30 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:background="@drawable/selector"
+            android:background="@drawable/white_sel"
             android:onClick="AddTeacherButton"
             android:text="Add/Remove Teacher"
-            android:textColor="#000" />
+            android:textColor="#fff" />
 
         <Button
             android:id="@+id/addstudentbutton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:background="@drawable/selector"
+            android:background="@drawable/white_sel"
             android:onClick="AddStudentButton"
             android:text="Add/Remove Student"
-            android:textColor="#000" />
+            android:textColor="#fff" />
 
         <Button
             android:id="@+id/button3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:background="@drawable/selector"
+            android:background="@drawable/white_sel"
             android:onClick="CreateAttendance"
             android:text="Create today's attendance"
-            android:textColor="#000" />
+            android:textColor="#ffff" />
 
 
         <Button
@@ -76,10 +76,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:background="@drawable/selector"
+            android:background="@drawable/white_sel"
             android:onClick="attendanceRecord"
             android:text="Attendance Record"
-            android:textColor="#000" />
+            android:textColor="#ffff" />
 
         <Button
             android:id="@+id/logout"
@@ -89,10 +89,10 @@
             android:layout_marginTop="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginBottom="8dp"
-            android:background="@drawable/selector"
+            android:background="@drawable/white_sel"
             android:onClick="changepassword"
             android:text="Change Password"
-            android:textColor="#000" />
+            android:textColor="#fff" />
 
         <Button
             android:id="@+id/change"
@@ -102,10 +102,10 @@
             android:layout_marginTop="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginBottom="8dp"
-            android:background="@drawable/selector"
+            android:background="@drawable/white_sel"
             android:onClick="logout"
             android:text="Logout"
-            android:textColor="#000" />
+            android:textColor="#fff" />
     </LinearLayout>
 
 </LinearLayout>

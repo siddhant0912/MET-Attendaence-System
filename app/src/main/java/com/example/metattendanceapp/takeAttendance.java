@@ -1,6 +1,5 @@
 package com.example.metattendanceapp;
 
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -10,6 +9,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
+
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -19,7 +21,6 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-
 
 public class takeAttendance extends  AppCompatActivity{
     String teacher_id;
@@ -33,7 +34,7 @@ public class takeAttendance extends  AppCompatActivity{
     String classname;
 
     ArrayList<String> ul;
-    ListView listView;
+
     private ArrayAdapter adapter;
     ArrayList Userlist = new ArrayList<>();
     ArrayList Usernames = new ArrayList<>();
@@ -47,15 +48,15 @@ public class takeAttendance extends  AppCompatActivity{
     {
          super.onCreate(savedInstance);
          setContentView(R.layout.activity_take_attendance);
-        mToolbar=(Toolbar)findViewById(R.id.takeattendancebar);
-        setTitle("Attendance");
-        period = (Spinner) findViewById(R.id.spinner4);
+        mToolbar=findViewById(R.id.takeattendancebar);
+        mToolbar.setTitle("Attendance");
+        period = findViewById(R.id.spinner4);
 
         // ArrayList Userlist;
         selectedItems = new ArrayList<String>();
 
-        TextView classname = (TextView) findViewById(R.id.textViewsid);
-        classname.setText("comp");
+        TextView classname =  findViewById(R.id.textViewsid);
+        //classname.setText("comp");
 
         //to get class name from teacherlogin
         Bundle bundle1 = getIntent().getExtras();
@@ -98,7 +99,7 @@ public class takeAttendance extends  AppCompatActivity{
     private void OnStart(ArrayList<String> userlist) {
         nonselectedItems = userlist;
         //create an instance of ListView
-        ListView chl = (ListView) findViewById(R.id.checkable_list);
+        ListView chl = findViewById(R.id.checkable_list);
         //set multiple selection mode
         chl.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 
@@ -156,6 +157,5 @@ public class takeAttendance extends  AppCompatActivity{
         }
     }
 
-    public void addtoreport(View view) {
-    }
+
 }

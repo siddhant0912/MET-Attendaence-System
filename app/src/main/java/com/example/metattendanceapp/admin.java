@@ -28,7 +28,6 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 public class admin extends AppCompatActivity {
     DatabaseReference ref;
     DatabaseReference dbStudent;
@@ -46,6 +45,7 @@ public class admin extends AppCompatActivity {
        setContentView(R.layout.admin);
         mToolbar=(Toolbar)findViewById(R.id.ftoolbar);
         mToolbar.setTitle("Admin Dashboard : "+"("+date+")");
+        mToolbar.setTitleTextColor(0xFFFFFFFF);
         ref = FirebaseDatabase.getInstance().getReference();
         dbStudent = ref.child("Student");
         dbAttendance = ref.child("attendance");

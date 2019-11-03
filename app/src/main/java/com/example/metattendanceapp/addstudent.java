@@ -38,13 +38,13 @@ public class addstudent extends AppCompatActivity{
         setContentView(R.layout.activity_addstudent);
 
         databaseStudent = FirebaseDatabase.getInstance().getReference("Student");
-        listViewstudent = (ListView) findViewById(R.id.listviewstudent);
+        listViewstudent = findViewById(R.id.listviewstudent);
         studentList =new ArrayList<>();
-        Sname =  (EditText) findViewById(R.id.editText1);
-        Sid =  (EditText) findViewById(R.id.editText3);
-        classes = (Spinner) findViewById(R.id.spinner3);
-        spassword = (EditText) findViewById(R.id.editText4);
-        mToolbar=(Toolbar)findViewById(R.id.ftoolbar);
+        Sname =   findViewById(R.id.editText1);
+        Sid =   findViewById(R.id.editText3);
+        classes =  findViewById(R.id.spinner3);
+        spassword =  findViewById(R.id.editText4);
+        mToolbar= findViewById(R.id.ftoolbar);
         mToolbar.setTitle("Add/Remove Student");
 
 
@@ -77,7 +77,7 @@ public class addstudent extends AppCompatActivity{
 
 
         if (!(TextUtils.isEmpty(Sid.getText().toString()))) {
-            String id = databaseStudent.push().getKey();
+            //String id = databaseStudent.push().getKey();
             sname = Sname.getText().toString();
             sid = Sid.getText().toString();
             classname = classes.getSelectedItem().toString();
