@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "835334352277-26ki9bqjc3hcd10mk002tiqg5dr9edt1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.metattendanceapp",
+            "certificate_hash": "229c6b8132b83b2cb7679b9cd72041d9dcbc53ea"
+          }
+        },
+        {
           "client_id": "835334352277-1focflmeelbqs3l68iru8lrfjcum26rv.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

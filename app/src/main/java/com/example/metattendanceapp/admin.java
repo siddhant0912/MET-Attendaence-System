@@ -1,7 +1,6 @@
 package com.example.metattendanceapp;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -10,7 +9,6 @@ import android.widget.Toolbar;
 import android.os.Bundle;
 
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
@@ -21,12 +19,10 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.GenericTypeIndicator;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
+
 import java.util.Date;
 public class admin extends AppCompatActivity {
     DatabaseReference ref;
@@ -36,14 +32,14 @@ public class admin extends AppCompatActivity {
     Toolbar mToolbar;
     private static long back_pressed;
 
-    ArrayList Studentlist = new ArrayList<>();
+    //ArrayList Studentlist = new ArrayList<>();
 
     String date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
     @Override
     protected void onCreate(Bundle savedInstanceState) {
        super.onCreate(savedInstanceState);
        setContentView(R.layout.admin);
-        mToolbar=(Toolbar)findViewById(R.id.ftoolbar);
+        mToolbar=findViewById(R.id.ftoolbar);
         mToolbar.setTitle("Admin Dashboard : "+"("+date+")");
         mToolbar.setTitleTextColor(0xFFFFFFFF);
         ref = FirebaseDatabase.getInstance().getReference();
@@ -67,7 +63,7 @@ public class admin extends AppCompatActivity {
         dbStudent.addListenerForSingleValueEvent(new ValueEventListener() {
 
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            public void onDataChange(@NonNull DataSnapshot  dataSnapshot) {
                 String sid,P1="-",P2="-",P3="-",P4="-",P5="-",P6="-",P7="-",P8="-";
                 Attendance_sheet a = new Attendance_sheet(P1,P2,P3,P4,P5,P6,P7,P8);
                 // Result will be holded Here
@@ -82,7 +78,7 @@ public class admin extends AppCompatActivity {
 
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {
+            public void onCancelled(@NonNull DatabaseError databaseError) {
                 Toast.makeText(getApplicationContext(), "something went wrong", Toast.LENGTH_LONG).show();
             }
 
@@ -102,7 +98,7 @@ public class admin extends AppCompatActivity {
         alertDialog.setTitle("Type your new password");
         final LayoutInflater inflater = this.getLayoutInflater();
         View add_menu_layout = inflater.inflate(R.layout.changepassword, null);
-        final EditText password=(EditText)add_menu_layout.findViewById(R.id.newpassword);
+        final EditText password=add_menu_layout.findViewById(R.id.newpassword);
         alertDialog.setView(add_menu_layout);
         alertDialog.setPositiveButton("YES", new DialogInterface.OnClickListener() {
 
@@ -137,6 +133,18 @@ public class admin extends AppCompatActivity {
         Intent logout=new Intent(admin.this,login_activity.class);
         logout.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(logout);
+    }
+    @Override
+    public void onBackPressed() {
+        if (back_pressed + 2000 > System.currentTimeMillis()){
+            super.onBackPressed();
+            finish();
+            System.exit(0);
+        }
+        else {
+            Toast.makeText(getBaseContext(), "Press once again to exit", Toast.LENGTH_SHORT).show();
+            back_pressed = System.currentTimeMillis();
+        }
     }
 }
 

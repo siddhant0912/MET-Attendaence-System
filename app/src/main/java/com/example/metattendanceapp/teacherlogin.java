@@ -30,16 +30,16 @@ public class teacherlogin extends AppCompatActivity  implements AdapterView.OnIt
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher);
-        Spinner spinner2 = (Spinner) findViewById(R.id.spinner2);
+        Spinner spinner2 = findViewById(R.id.spinner2);
 
 
         //to get username from login page
         Bundle bundle1 = getIntent().getExtras();
         message = bundle1.getString("message");
-        mToolbar=(Toolbar)findViewById(R.id.ftoolbar);
+        mToolbar=findViewById(R.id.ftoolbar);
         mToolbar.setTitle("Teacher's| Dashboard |" + "(" + date + ")");
 
-        TextView txtView = (TextView) findViewById(R.id.textView1);
+        TextView txtView =  findViewById(R.id.textView1);
         txtView.setText("Welcome :" + message);
 
         // Spinner click listener
@@ -98,5 +98,17 @@ public class teacherlogin extends AppCompatActivity  implements AdapterView.OnIt
         Intent logoutTeacher=new Intent(teacherlogin.this,login_activity.class);
         logoutTeacher.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(logoutTeacher);
+    }
+    @Override
+    public void onBackPressed() {
+        if (back_pressed + 2000 > System.currentTimeMillis()){
+            super.onBackPressed();
+            finish();
+            System.exit(0);
+        }
+        else {
+            Toast.makeText(getBaseContext(), "Press once again to exit", Toast.LENGTH_SHORT).show();
+            back_pressed = System.currentTimeMillis();
+        }
     }
 }

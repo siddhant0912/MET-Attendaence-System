@@ -30,6 +30,7 @@ public class addteacher extends AppCompatActivity{
     EditText subject,tpassword;
     String tname,tid,sub,classname,tpass;
     Spinner classes;
+    private static long back_pressed;
     DatabaseReference databaseTeacher;
     Toolbar mToolbar;
 
@@ -39,14 +40,14 @@ public class addteacher extends AppCompatActivity{
         setContentView(R.layout.activity_addteacher);
 
         databaseTeacher = FirebaseDatabase.getInstance().getReference("Teacher");
-        listViewteacher = (ListView) findViewById(R.id.listViewteachers);
+        listViewteacher =  findViewById(R.id.listViewteachers);
         teacherList =new ArrayList<>();
-        Tname =  (EditText) findViewById(R.id.editText1);
-        Tid =  (EditText) findViewById(R.id.editText3);
-        subject =  (EditText) findViewById(R.id.editText4);
-        classes = (Spinner) findViewById(R.id.spinner3);
-        tpassword =  (EditText) findViewById(R.id.editText5);
-        mToolbar=(Toolbar)findViewById(R.id.ftoolbar);
+        Tname =   findViewById(R.id.editText1);
+        Tid =   findViewById(R.id.editText3);
+        subject =   findViewById(R.id.editText4);
+        classes =  findViewById(R.id.spinner3);
+        tpassword =   findViewById(R.id.editText5);
+        mToolbar=findViewById(R.id.ftoolbar);
         mToolbar.setTitle("Add/Remove Teacher");
 
 
@@ -112,5 +113,17 @@ public class addteacher extends AppCompatActivity{
             finish();
         }
         return super.onOptionsItemSelected(item);
+    }
+    @Override
+    public void onBackPressed() {
+        if (back_pressed + 2000 > System.currentTimeMillis()){
+            super.onBackPressed();
+            finish();
+            System.exit(0);
+        }
+        else {
+            Toast.makeText(getBaseContext(), "Press once again to exit", Toast.LENGTH_SHORT).show();
+            back_pressed = System.currentTimeMillis();
+        }
     }
 }

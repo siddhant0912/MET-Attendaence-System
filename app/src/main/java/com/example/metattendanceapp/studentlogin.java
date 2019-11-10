@@ -29,9 +29,9 @@ public class studentlogin extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
         message = bundle.getString("message");
-        mToolbar = (Toolbar) findViewById(R.id.ftoolbar);
+        mToolbar =findViewById(R.id.ftoolbar);
         mToolbar.setTitle("Student's| Dashboard |" + "(" + date + ")");
-        TextView txtView = (TextView) findViewById(R.id.textView1);
+        TextView txtView = findViewById(R.id.textView1);
         txtView.setText("Welcome :" + message);
 
 
