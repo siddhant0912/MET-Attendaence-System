@@ -94,7 +94,7 @@ class NotesUpload : AppCompatActivity() {
                 while (!url.isSuccessful());
                    val downloadUrl: Uri? = url.getResult()
                 val up = UploadDetails(tid!!, tclass!!,downloadUrl.toString())
-                db!!.child("Uploads").child(tid!!).setValue(up)
+                db!!.child("Uploads").child(tclass!!).setValue(up)
                 Toast.makeText(this, "File Successfully Uploaded", Toast.LENGTH_LONG).show()
                 mDialog!!.dismiss()
             }
