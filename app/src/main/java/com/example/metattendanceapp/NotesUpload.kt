@@ -1,10 +1,11 @@
 package com.example.metattendanceapp
 
 import android.app.Activity
+import android.app.Dialog
+import android.app.ProgressDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.provider.ContactsContract
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
@@ -27,25 +28,24 @@ class NotesUpload : AppCompatActivity() {
     var Doc: Button ?= null
     var noti:TextView ?= null
     var PDf: Button ?=null
-    var storage:FirebaseStorage ?=null
-    var class_selected:String ?= null
-    var teacher_id:String ?= null
-    var db:DatabaseReference ?= null
+    var tclass:String ?= null
+    var tid:String ?= null
+    var mDialog:ProgressDialog ?= null
+    private lateinit var db:DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        val bundle1 = intent.extras
-        db= FirebaseDatabase.getInstance().getReference("Uploads")
-        class_selected = bundle1.getString("class_selected")
-        teacher_id = bundle1.getString("tid")
+
+        db= FirebaseDatabase.getInstance().reference
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_notes_upload)
-        storage = FirebaseStorage.getInstance()
         mStorageRef = FirebaseStorage.getInstance().getReference("Uploads")
 
         Doc = findViewById(R.id.PDOC)
         PDf = findViewById(R.id.FPDF)
         noti = findViewById(R.id.Fname)
+
         Doc!!.setOnClickListener(View.OnClickListener {
+
             view:View?  -> val intent =Intent()
             intent.setType("application/docx")
             intent.setAction(Intent.ACTION_GET_CONTENT)
@@ -64,12 +64,12 @@ class NotesUpload : AppCompatActivity() {
         noti = findViewById(R.id.Fname)
         if(resultCode == Activity.RESULT_OK){
             if(requestCode == PDF) {
-               uri = data!!.data
-                noti!!.text =uri.toString()
+               uri = data!!.getData()
+                noti!!.setText("Selected File:"+data.getData().getLastPathSegment())
                 upload()
                }else if(requestCode ==DOCX){
-                uri = data!!.data
-                noti!!.text =uri.toString()
+                uri = data!!.getData()
+                noti!!.setText("Selected File:"+data.getData().getLastPathSegment())
                 upload()
             }
 
@@ -78,16 +78,25 @@ class NotesUpload : AppCompatActivity() {
     }
     private fun upload() {
         var mReference = mStorageRef!!.child(uri.lastPathSegment)
+        val bundle1 = intent.extras
+        tclass = bundle1.getString("class_selected").toString()
+        tid= bundle1.getString("tid").toString()
+        mDialog = ProgressDialog(this)
+        mDialog!!.setMessage("Uploading Please Wait.....")
+        mDialog!!.setTitle("Loading")
+        mDialog!!.show()
 
         try {
             mReference.putFile(uri).addOnSuccessListener{
                 taskSnapshot: UploadTask.TaskSnapshot? -> var url = mReference!!.downloadUrl
-               // val up = UploadDetails(teacher_id!!, class_selected!!, url)
-                //db!!.child(teacher_id!!).setValue(up)
-                Toast.makeText(this, "Successfully Uploaded", Toast.LENGTH_LONG).show()
+                val up = UploadDetails(tid!!, tclass!!,url.toString())
+                db!!.child("Uploads").child(tid!!).setValue(up)
+                Toast.makeText(this, "File Successfully Uploaded", Toast.LENGTH_LONG).show()
+                mDialog!!.dismiss()
             }
         }catch (e:Exception) {
             Toast.makeText(this, e.toString(), Toast.LENGTH_LONG).show()
+            mDialog!!.dismiss()
         }
     }
 }

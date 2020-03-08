@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -10,46 +10,61 @@
     android:background="@drawable/background"
     android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/PDOC"
-        android:layout_width="196dp"
-        android:layout_height="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="313dp"
+        android:layout_height="551dp"
         android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="86dp"
-        android:layout_marginEnd="101dp"
-        android:layout_marginBottom="590dp"
-        android:background="@drawable/selector"
+        android:background="@drawable/bottom"
+        android:foregroundGravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        android:text="Upload if word Doc" />
+        <Button
+            android:id="@+id/PDOC"
+            android:layout_width="196dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/selector"
+            android:backgroundTint="#CC8899"
+            android:text="Upload if word Doc"
+            app:layout_constraintBottom_toTopOf="@+id/FPDF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.452"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.818" />
 
-    <TextView
-        android:id="@+id/Fname"
-        android:layout_width="383dp"
-        android:layout_height="55dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginEnd="0dp"
-        android:layout_marginBottom="378dp"
-        android:text="TextView"
-        android:textAlignment="center"
-        android:textSize="24sp" />
+        <TextView
+            android:id="@+id/Fname"
+            android:layout_width="270dp"
+            android:layout_height="194dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginBottom="44dp"
+            android:text="No File Selected"
+            android:textAlignment="center"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/FPDF"
+            app:layout_constraintVertical_bias="0.972" />
 
-    <Button
-        android:id="@+id/FPDF"
-        android:layout_width="193dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="86dp"
-        android:layout_marginEnd="104dp"
-        android:layout_marginBottom="495dp"
-        android:background="@drawable/selector"
-        android:text="Upload IF PDF" />
+        <Button
+            android:id="@+id/FPDF"
+
+            android:layout_width="196dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="64dp"
+            android:layout_marginBottom="312dp"
+            android:background="@drawable/selector"
+            android:backgroundTint="#CC8899"
+            android:text="Upload IF PDF"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
