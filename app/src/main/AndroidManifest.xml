@@ -29,6 +29,8 @@
         <activity android:name=".addteacher"/>
         <activity android:name=".Teacher"/>
         <activity android:name=".takeAttendance"/>
+        <activity android:name=".NotesUpload"/>
+        <activity android:name="UploadDetails"/>
         <activity android:name=".teacher_attendanceSheet"/>
         <activity android:name=".show_students"/>
         <activity android:name=".show_teachers"/>

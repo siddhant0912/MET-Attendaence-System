@@ -23,7 +23,10 @@
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
         android:layout_gravity="center"
+
+        android:layout_marginStart="37dp"
         android:layout_marginLeft="40dp"
         android:layout_marginTop="120dp"
         android:layout_marginBottom="23dp"
@@ -37,10 +40,10 @@
         tools:layout_editor_absoluteX="120dp" />
 
     <RelativeLayout
-        android:layout_width="393dp"
-        android:layout_height="416dp"
+        android:layout_width="match_parent"
+        android:layout_height="456dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="130dp"
+        android:layout_marginBottom="90dp"
         android:background="@drawable/transparent"
         android:gravity="center"
         android:orientation="vertical"
@@ -63,13 +66,28 @@
             app:layout_constraintVertical_bias="0.364"
             tools:layout_editor_absoluteX="8dp" />
 
+
+        <Button
+            android:id="@+id/button13"
+            android:layout_width="375dp"
+            android:layout_height="54dp"
+            android:layout_above="@+id/button6"
+            android:textAlignment="center"
+            android:layout_alignParentTop="true"
+            android:onClick="uploadNotesAc"
+            android:layout_marginTop="181dp"
+            android:layout_marginBottom="3dp"
+            android:background="@drawable/selector"
+            android:padding="10dp"
+            android:text="Upload Notes" />
+
         <Button
             android:id="@+id/button7"
-            android:layout_width="376dp"
-            android:layout_height="56dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginTop="266dp"
+            android:layout_marginTop="302dp"
             android:layout_marginBottom="84dp"
             android:height="40dp"
             android:background="@drawable/selector"
@@ -104,7 +122,7 @@
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="210dp"
+            android:layout_marginBottom="300dp"
             android:entries="@array/classes"
 
             app:layout_constraintBottom_toBottomOf="parent"
@@ -117,8 +135,8 @@
             android:layout_height="41dp"
             android:layout_above="@+id/spinner2"
             android:layout_alignParentEnd="true"
-            android:layout_marginEnd="40dp"
-            android:layout_marginBottom="41dp"
+            android:layout_marginEnd="50dp"
+            android:layout_marginBottom="70dp"
             android:text="Select Your Class"
             android:textColor="#000"
             android:textSize="20dp"

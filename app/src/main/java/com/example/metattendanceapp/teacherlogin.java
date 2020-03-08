@@ -93,6 +93,15 @@ public class teacherlogin extends AppCompatActivity  implements AdapterView.OnIt
         intent.putExtras(basket);
         startActivity(intent);
     }
+    public void uploadNotesAc(View view){
+        Bundle basket = new Bundle();
+        basket.putString("class_selected",item);
+        basket.putString("tid", message);
+
+        Intent intent = new Intent(this, NotesUpload.class);
+        intent.putExtras(basket);
+        startActivity(intent);
+    }
 
     public void logoutTeacher(View view) {
         Intent logoutTeacher=new Intent(teacherlogin.this,login_activity.class);

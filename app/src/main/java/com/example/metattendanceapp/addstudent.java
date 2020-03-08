@@ -1,10 +1,15 @@
 package com.example.metattendanceapp;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.MenuItem;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toolbar;
 import android.view.View;
@@ -29,6 +34,7 @@ public class addstudent extends AppCompatActivity{
     Spinner classes;
     DatabaseReference databaseStudent;
     ListView listViewstudent;
+    ArrayAdapter adapter;
     List<Student> studentList;
     Toolbar mToolbar;
 
@@ -71,13 +77,16 @@ public class addstudent extends AppCompatActivity{
 
             }
         });
+
+
+
     }
 
     public void addStudent(View view) {
 
 
         if (!(TextUtils.isEmpty(Sid.getText().toString()))) {
-            //String id = databaseStudent.push().getKey();
+
             sname = Sname.getText().toString();
             sid = Sid.getText().toString();
             classname = classes.getSelectedItem().toString();
