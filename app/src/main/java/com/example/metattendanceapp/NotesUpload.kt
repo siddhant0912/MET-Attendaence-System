@@ -1,7 +1,6 @@
 package com.example.metattendanceapp
 
 import android.app.Activity
-import android.app.Dialog
 import android.app.ProgressDialog
 import android.content.Intent
 import android.net.Uri
@@ -12,11 +11,14 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+
+import com.google.android.gms.tasks.Task
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.UploadTask
+
 
 
 class NotesUpload : AppCompatActivity() {
@@ -88,8 +90,10 @@ class NotesUpload : AppCompatActivity() {
 
         try {
             mReference.putFile(uri).addOnSuccessListener{
-                taskSnapshot: UploadTask.TaskSnapshot? -> var url = mReference!!.downloadUrl
-                val up = UploadDetails(tid!!, tclass!!,url.toString())
+                taskSnapshot: UploadTask.TaskSnapshot? -> var url:Task<Uri> = taskSnapshot!!.getStorage().getDownloadUrl()
+                while (!url.isSuccessful());
+                   val downloadUrl: Uri? = url.getResult()
+                val up = UploadDetails(tid!!, tclass!!,downloadUrl.toString())
                 db!!.child("Uploads").child(tid!!).setValue(up)
                 Toast.makeText(this, "File Successfully Uploaded", Toast.LENGTH_LONG).show()
                 mDialog!!.dismiss()
