@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/selector"
             android:backgroundTint="#CC8899"
-            android:text="Upload if word Doc"
+            android:text="Upload if word Docx"
             app:layout_constraintBottom_toTopOf="@+id/FPDF"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.452"
@@ -64,6 +64,18 @@
             android:text="Upload IF PDF"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
+
+        <EditText
+            android:id="@+id/NotesDes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Enter Description Here"
+            android:inputType="textPersonName"
+            app:layout_constraintBottom_toTopOf="@+id/PDOC"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
