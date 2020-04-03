@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+
+        android:id="@+id/textViewtid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TvFileName"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
+
+    <TextView
+
+        android:id="@+id/textViewstname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TvUploadedBy"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
+
+    <Button
+        android:id="@+id/buDownload"
+        android:layout_width="142dp"
+        android:layout_height="36dp"
+        android:onClick="dwnldFile"
+        android:background="@drawable/selector"
+        android:text="Download" />
+
+</LinearLayout>

@@ -32,45 +32,32 @@ public class teacherlogin extends AppCompatActivity  implements AdapterView.OnIt
         setContentView(R.layout.activity_teacher);
         Spinner spinner2 = findViewById(R.id.spinner2);
 
-
-        //to get username from login page
         Bundle bundle1 = getIntent().getExtras();
+        assert bundle1 != null;
         message = bundle1.getString("message");
         mToolbar=findViewById(R.id.ftoolbar);
         mToolbar.setTitle("Teacher's| Dashboard |" + "(" + date + ")");
 
         TextView txtView =  findViewById(R.id.textView1);
         txtView.setText("Welcome :" + message);
-
-        // Spinner click listener
         spinner2.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) this);
 
-        // Spinner Drop down elements
         List<String> categories = new ArrayList<String>();
         categories.add("SE-A");
         categories.add("SE-B");
         categories.add("TE");
         categories.add("BE");
 
-        // Creating adapter for spinner
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
-
-        // Drop down layout style - list view with radio button
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        // attaching data adapter to spinner
         spinner2.setAdapter(dataAdapter);
     }
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        // On selecting a spinner item
         item = parent.getItemAtPosition(position).toString();
-
-        // Showing selected spinner item
          Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
     }
     public void onNothingSelected(AdapterView<?> arg0) {
-        // TODO Auto-generated method stub
     }
     public void previous_records(View view) {
         Bundle basket= new Bundle();

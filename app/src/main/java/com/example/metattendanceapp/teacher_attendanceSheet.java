@@ -55,7 +55,7 @@ public class teacher_attendanceSheet extends AppCompatActivity {
         dbStudent.orderByChild("classes").equalTo(class_selected).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                // Result will be holded Here
+
                 for (DataSnapshot dsp : dataSnapshot.getChildren()) {
                     Userlist.add(dsp.child("sid").getValue().toString()); //add result into array list
                 }
@@ -82,36 +82,14 @@ public class teacher_attendanceSheet extends AppCompatActivity {
             dbAttendance.child(required_date).child(sid.toString()).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
-                    // Result will be holded Here
-
-                    //DataSnapshot dsp=dataSnapshot.child(sid.toString());
                     for(DataSnapshot dsp : dataSnapshot.getChildren()) {
                         String p1 = dsp.getValue().toString();
-
-
-                        //Toast.makeText(getApplicationContext(),p1,Toast.LENGTH_LONG).show();
                         if((p1.equals("A / "+teacher_id))||(p1.equals("P / "+teacher_id))){
                             Studentlist.add(dataSnapshot.getKey().toString() + "            " + p1.substring(0,1) +"        "+dsp.getKey());
                         }
                     }
-                    /*
-                    String p2=dataSnapshot.child(sid.toString()).child("p2").getValue().toString().substring(0,1);
-                    String p3=dataSnapshot.child(sid.toString()).child("p3").getValue().toString().substring(0,1);
-                    String p4=dataSnapshot.child(sid.toString()).child("p4").getValue().toString().substring(0,1);
-                    String p5=dataSnapshot.child(sid.toString()).child("p5").getValue().toString().substring(0,1);
-                    String p6=dataSnapshot.child(sid.toString()).child("p6").getValue().toString().substring(0,1);
-                    String p7=dataSnapshot.child(sid.toString()).child("p7").getValue().toString().substring(0,1);
-                    String p8=dataSnapshot.child(sid.toString()).child("p8").getValue().toString().substring(0,1);
-                */
-                    //  Studentlist.add(dataSnapshot.getKey().toString() + "    " + p1); //add result into array list
-
-
-                    //Toast.makeText(getApplicationContext(),Studentlist.toString(), Toast.LENGTH_LONG).show();
                     list(Studentlist);
-
                 }
-
-
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
                     Toast.makeText(getApplicationContext(), "something went wrong", Toast.LENGTH_LONG).show();
@@ -125,7 +103,6 @@ public class teacher_attendanceSheet extends AppCompatActivity {
     public void list(ArrayList studentlist){
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, studentlist);
-        // Assign adapter to ListView
         listView.setAdapter(adapter);
 
 

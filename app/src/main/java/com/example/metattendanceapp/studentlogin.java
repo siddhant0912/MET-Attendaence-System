@@ -10,6 +10,7 @@ import android.widget.Toast;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.io.StringReader;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,6 +29,7 @@ public class studentlogin extends AppCompatActivity {
         setContentView(R.layout.activity_student);
 
         Bundle bundle = getIntent().getExtras();
+        assert bundle != null;
         message = bundle.getString("message");
         mToolbar =findViewById(R.id.ftoolbar);
         mToolbar.setTitle("Student's| Dashboard |" + "(" + date + ")");
@@ -65,5 +67,15 @@ public class studentlogin extends AppCompatActivity {
             Toast.makeText(getBaseContext(), "Press once again to exit", Toast.LENGTH_SHORT).show();
             back_pressed = System.currentTimeMillis();
         }
+    }
+
+    public void viewupload(View view) {
+        Bundle basket = new Bundle();
+        basket.putString("sid", message);
+
+        Intent intent = new Intent(this, NotesDownload.class);
+        intent.putExtras(basket);
+        startActivity(intent);
+
     }
 }

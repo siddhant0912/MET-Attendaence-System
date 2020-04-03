@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.metattendanceapp">
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-<uses-permission android:name="android.permission.INTERNET">
 
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET"/>
 
-</uses-permission>
     <application
         android:allowBackup="true"
         android:icon="@drawable/icon_main"
@@ -13,6 +12,7 @@
         android:roundIcon="@drawable/icon_main"
         android:supportsRtl="true"
         android:theme="@style/HiddenTitleTheme">
+        <activity android:name=".NotesDownload"/>
         <activity android:name=".main_activity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,25 +20,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".login_activity"/>
-        <activity android:name=".admin"/>
-        <activity android:name=".teacherlogin"/>
-        <activity android:name=".studentlogin"/>
-        <activity android:name=".addstudent"/>
-        <activity android:name=".Student"/>
-        <activity android:name=".addteacher"/>
-        <activity android:name=".Teacher"/>
-        <activity android:name=".takeAttendance"/>
-        <activity android:name=".NotesUpload"/>
-        <activity android:name="UploadDetails"/>
-        <activity android:name=".teacher_attendanceSheet"/>
-        <activity android:name=".show_students"/>
-        <activity android:name=".show_teachers"/>
-        <activity android:name=".student_attendance_sheet"/>
-        <activity android:name=".admin_attendanceSheet"/>
-
-
-
+        <activity android:name=".login_activity" />
+        <activity android:name=".admin" />
+        <activity android:name=".teacherlogin" />
+        <activity android:name=".studentlogin" />
+        <activity android:name=".addstudent" />
+        <activity android:name=".Student" />
+        <activity android:name=".addteacher" />
+        <activity android:name=".Teacher" />
+        <activity android:name=".takeAttendance" />
+        <activity android:name=".NotesUpload" />
+        <activity android:name=".UploadDetails" />
+        <activity android:name=".teacher_attendanceSheet" />
+        <activity android:name=".show_students" />
+        <activity android:name=".show_teachers" />
+        <activity android:name=".student_attendance_sheet" />
+        <activity android:name=".admin_attendanceSheet" />
     </application>
 
 </manifest>

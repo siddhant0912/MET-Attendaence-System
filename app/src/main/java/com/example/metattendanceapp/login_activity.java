@@ -32,7 +32,7 @@ public class login_activity extends AppCompatActivity implements AdapterView.OnI
     private FirebaseAuth mAuth;
     Bundle basket;
 
-    //DatabaseReference ref;
+
 
     ProgressDialog mDialog;
     public static long back_pressed;
@@ -45,37 +45,33 @@ public class login_activity extends AppCompatActivity implements AdapterView.OnI
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         mAuth = FirebaseAuth.getInstance();
-        //retrieving studentlogin id from firebase
+
         username = (EditText) findViewById(R.id.username);
         password = (EditText) findViewById(R.id.password);
 
-        // Spinner element
+
         Spinner spinner = (Spinner) findViewById(R.id.spinner);
 
-        // Spinner click listener
+
         spinner.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) this);
 
-        // Spinner Drop down elements
+
         List<String> categories = new ArrayList<String>();
         categories.add("Admin");
         categories.add("Teacher");
         categories.add("Student");
 
 
-        // Creating adapter for spinner
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, R.layout.spin, categories);
 
-        // Drop down layout style - list view with radio button
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        // attaching data adapter to spinner
         spinner.setAdapter(dataAdapter);
 
     }
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         item = parent.getItemAtPosition(position).toString();
-        //showing selected spinner item
     }
 
     @Override

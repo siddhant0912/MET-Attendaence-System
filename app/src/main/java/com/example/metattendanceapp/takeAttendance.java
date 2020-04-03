@@ -18,9 +18,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Objects;
 
 public class takeAttendance extends  AppCompatActivity{
     String teacher_id;
@@ -52,7 +55,6 @@ public class takeAttendance extends  AppCompatActivity{
         mToolbar.setTitle("Attendance");
         period = findViewById(R.id.spinner4);
 
-        // ArrayList Userlist;
         selectedItems = new ArrayList<String>();
 
         TextView classname =  findViewById(R.id.textViewsid);
@@ -60,6 +62,7 @@ public class takeAttendance extends  AppCompatActivity{
 
         //to get class name from teacherlogin
         Bundle bundle1 = getIntent().getExtras();
+        assert bundle1 != null;
         class_selected = bundle1.getString("class_selected");
         teacher_id = bundle1.getString("tid");
         Toast.makeText(getApplicationContext(), teacher_id, Toast.LENGTH_LONG).show();
@@ -71,14 +74,14 @@ public class takeAttendance extends  AppCompatActivity{
 
         dbuser.orderByChild("classes").equalTo(class_selected).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            public void onDataChange(@NotNull DataSnapshot dataSnapshot) {
 
 
                 // Result will be holded Here
 
                 for (DataSnapshot dsp : dataSnapshot.getChildren()) {
-                    Userlist.add(dsp.child("sid").getValue().toString()); //add result into array list
-                    Usernames.add(dsp.child("sname").getValue().toString());
+                    Userlist.add(Objects.requireNonNull(dsp.child("sid").getValue()).toString()); //add result into array list
+                    Usernames.add(Objects.requireNonNull(dsp.child("sname").getValue()).toString());
 
 
                 }
@@ -88,7 +91,7 @@ public class takeAttendance extends  AppCompatActivity{
 
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {
+            public void onCancelled(@NotNull DatabaseError databaseError) {
                 Toast.makeText(getApplicationContext(), "something went wrong", Toast.LENGTH_LONG).show();
             }
 
@@ -124,7 +127,7 @@ public class takeAttendance extends  AppCompatActivity{
 
 
     public void showSelectedItems(View view) {
-        String selItems = "";
+        StringBuilder selItems = new StringBuilder();
         periodno = period.getSelectedItem().toString();
         if (periodno.equals("Select Period")) {
             Toast.makeText(this, "Select a class", Toast.LENGTH_LONG).show();
@@ -138,15 +141,13 @@ public class takeAttendance extends  AppCompatActivity{
                 Toast.makeText(this, "Attendance created Successfully", Toast.LENGTH_SHORT).show();
                 nonselectedItems.remove(item);
                 dbAttendance.child(item).child(periodno).setValue("P" + " / " + teacher_id);
-                if (selItems == "")
-                    selItems = item;
+                if (selItems.toString().equals(""))
+                    selItems = new StringBuilder(item);
                 else
-                    selItems += "/" + item;
+                    selItems.append("/").append(item);
 
             }
 
-
-            //for making absent
             for (String item : nonselectedItems) {
                 Toast.makeText(this, "Attendance created Successfully", Toast.LENGTH_SHORT).show();
                 dbAttendance.child(item).child(periodno).setValue("A" + " / " + teacher_id);
@@ -156,6 +157,4 @@ public class takeAttendance extends  AppCompatActivity{
             }
         }
     }
-
-
 }

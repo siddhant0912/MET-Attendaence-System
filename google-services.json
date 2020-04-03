@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "835334352277",
+    "firebase_url": "https://met-attendance-app-11b3c.firebaseio.com",
+    "project_id": "met-attendance-app-11b3c",
+    "storage_bucket": "met-attendance-app-11b3c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:835334352277:android:cce88da8303f9c55b7da9c",
+        "android_client_info": {
+          "package_name": "com.example.metattendanceapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "835334352277-1focflmeelbqs3l68iru8lrfjcum26rv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.metattendanceapp",
+            "certificate_hash": "badda80a3a0b3d94d4b66fcb5f0a88f2e0d0ea26"
+          }
+        },
+        {
+          "client_id": "835334352277-fg3pruh8rmsl1g2m8ihriubd5bbsv2te.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBQ2kxuzBYCefysXT2BPJDyatYc8C8FvAg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "835334352277-fg3pruh8rmsl1g2m8ihriubd5bbsv2te.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

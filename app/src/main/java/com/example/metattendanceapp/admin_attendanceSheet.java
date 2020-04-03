@@ -7,7 +7,6 @@ package com.example.metattendanceapp;
  import android.widget.ListView;
  import android.widget.Spinner;
  import android.widget.Toast;
- import android.graphics.Color;
  import android.os.Bundle;
  import android.widget.Toolbar;
 
@@ -25,8 +24,8 @@ public class admin_attendanceSheet extends AppCompatActivity {
     Spinner class_name;
     String classes;
     EditText date;
-    ArrayList Userlist = new ArrayList<>();
-    ArrayList Studentlist = new ArrayList<>();
+    ArrayList<String> Userlist = new ArrayList<>();
+    ArrayList<String> Studentlist = new ArrayList<String>();
 
     DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
     DatabaseReference dbAttendance;
@@ -38,10 +37,10 @@ public class admin_attendanceSheet extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_attendance_sheet);
-        mToolbar=(Toolbar)findViewById(R.id.ftoolbar);
-        setTitle("Attendance Records");
-        listView = (ListView) findViewById(R.id.list);
-        class_name = (Spinner) findViewById(R.id.spinner5);
+        mToolbar=findViewById(R.id.ftoolbar);
+        mToolbar.setTitle("Admin Dashboard : "+"("+date+")");
+        listView = findViewById(R.id.list);
+        class_name = findViewById(R.id.spinner5);
         date = (EditText) findViewById(R.id.date);
 
         classes = class_name.getSelectedItem().toString();
@@ -50,19 +49,19 @@ public class admin_attendanceSheet extends AppCompatActivity {
 
     }
 
-    public void display_list(final ArrayList userlist) {
+    public void display_list(final ArrayList<String> userlist) {
         Studentlist.clear();
         required_date = date.getText().toString();
         dbAttendance = ref.child("attendance");
         dbAttendance.child(required_date).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                // Result will be holded Here
+
 
                 Studentlist.add("    SID                    "+"p1  "+"p2  "+"p3  "+"p4  "+"p5  "+"p6  "+"p7  "+"p8");
                 for (Object sid : userlist) {
 
-                    //DataSnapshot dsp=dataSnapshot.child(sid.toString());
+
                     String p1=dataSnapshot.child(sid.toString()).child("p1").getValue().toString().substring(0,1);
                     String p2=dataSnapshot.child(sid.toString()).child("p2").getValue().toString().substring(0,1);
                     String p3=dataSnapshot.child(sid.toString()).child("p3").getValue().toString().substring(0,1);
@@ -73,7 +72,7 @@ public class admin_attendanceSheet extends AppCompatActivity {
                     String p8=dataSnapshot.child(sid.toString()).child("p8").getValue().toString().substring(0,1);
                     Studentlist.add(dataSnapshot.child(sid.toString()).getKey().toString()+"   "+p1+"    "+p2+"    "+p3+"    "+p4+"    "+p5+"    "+p6+"    "+p7+"    "+p8); //add result into array list
                 }
-                //Toast.makeText(getApplicationContext(),Studentlist.toString(), Toast.LENGTH_LONG).show();
+
                 list(Studentlist);
 
             }
@@ -119,11 +118,10 @@ public class admin_attendanceSheet extends AppCompatActivity {
 
 
     }
-    public void list(ArrayList studentlist){
-        //int color = Color.argb(255, 255, 175, 64);
+    public void list(ArrayList<String> studentlist){
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, studentlist);
-        // Assign adapter to ListView
+
         listView.setAdapter(adapter);
 
 

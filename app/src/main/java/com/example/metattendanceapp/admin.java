@@ -24,6 +24,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.SimpleDateFormat;
 
 import java.util.Date;
+import java.util.Objects;
+
 public class admin extends AppCompatActivity {
     DatabaseReference ref;
     DatabaseReference dbStudent;
@@ -66,9 +68,9 @@ public class admin extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot  dataSnapshot) {
                 String sid,P1="-",P2="-",P3="-",P4="-",P5="-",P6="-",P7="-",P8="-";
                 Attendance_sheet a = new Attendance_sheet(P1,P2,P3,P4,P5,P6,P7,P8);
-                // Result will be holded Here
+
                 for (DataSnapshot dsp : dataSnapshot.getChildren()) {
-                    sid=dsp.child("sid").getValue().toString(); //add result into array list
+                    sid= Objects.requireNonNull(dsp.child("sid").getValue()).toString();
                     dbAttendance.child(date).child(sid).setValue(a);
 
                 }

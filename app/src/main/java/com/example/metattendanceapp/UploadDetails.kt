@@ -1,12 +1,10 @@
 package com.example.metattendanceapp
 
-
-
-
-data class UploadDetails(
-        var uploadedBy:String ?="",
+class UploadDetails(
+        var FileName:String ?= "",
+        var UploadedBy:String ?="",
         var Forclass:String?="",
         var url:String?,
-        var notesDes:String?
+        var NotesDes:String?
 
 )

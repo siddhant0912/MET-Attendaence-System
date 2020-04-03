@@ -16,7 +16,7 @@ public class show_students extends ArrayAdapter<Student> {
     private Activity context;
     private List<Student> studentlist;
 
-    public show_students(Activity context, List<Student> studentlist){
+    show_students(Activity context, List<Student> studentlist){
         super(context, R.layout.activity_show_students,studentlist);
         this.context = context;
         this.studentlist =studentlist;

@@ -18,7 +18,6 @@ public class main_activity extends AppCompatActivity {
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    /* Create an Intent that will start the Menu-Activity. */
                     Intent mainIntent = new Intent(main_activity.this, login_activity.class);
                     startActivity(mainIntent);
                     main_activity.this.finish();

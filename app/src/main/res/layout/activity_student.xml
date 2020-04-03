@@ -71,6 +71,15 @@
 
 
             <Button
+                android:id="@+id/button16"
+                android:layout_width="match_parent"
+                android:background="@drawable/selector"
+                android:layout_height="wrap_content"
+                android:textColor="#ffff"
+                android:onClick="viewupload"
+                android:text="View Uploads" />
+
+            <Button
                 android:id="@+id/button4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

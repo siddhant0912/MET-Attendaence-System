@@ -18,8 +18,6 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.UploadTask
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 
 
 @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
@@ -36,6 +34,7 @@ class NotesUpload : AppCompatActivity() {
     var tclass:String ?= null
     var tid:String ?= null
     var mDialog:ProgressDialog ?= null
+    var filetype: String ?= null
     private lateinit var db:DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -65,20 +64,25 @@ class NotesUpload : AppCompatActivity() {
         })
 
     }
+
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
 
+
         noti = findViewById(R.id.Fname)
-        if(resultCode == Activity.RESULT_OK){
-            if(requestCode == PDF) {
-                uri = data!!.getData()
-                noti!!.setText("Selected File:"+uri.lastPathSegment)
-                val notDes =(NotesDes!!.text).toString()
+        if (resultCode == Activity.RESULT_OK) {
+            if (requestCode == PDF) {
+                uri = data!!.data
+
+                noti!!.text = "Selected File: ${uri.lastPathSegment}"
+                val notDes = (NotesDes!!.text).toString()
+                filetype = ".pdf"
                 upload(notDes)
-               }else if(requestCode ==DOCX){
-                uri = data!!.getData()
-                noti!!.setText("Selected File:"+uri.lastPathSegment)
-                val notDes =(NotesDes!!.text).toString()
+            } else if (requestCode == DOCX) {
+                uri = data!!.data
+                noti!!.text = "Selected File: ${uri.lastPathSegment}"
+                val notDes = (NotesDes!!.text).toString()
+                filetype = ".docx"
                 upload(notDes)
             }
 
@@ -87,11 +91,11 @@ class NotesUpload : AppCompatActivity() {
     }
     @RequiresApi(Build.VERSION_CODES.O)
     private fun upload(notesDes:String) {
-        var mReference = mStorageRef!!.child(uri.lastPathSegment)
+        val mReference = mStorageRef!!.child(uri.lastPathSegment)
 
         val bundle1 = intent.extras
-        tclass = bundle1.getString("class_selected").toString()
-        tid= bundle1.getString("tid").toString()
+        tclass = bundle1?.getString("class_selected")
+        tid= bundle1?.getString("tid")
         mDialog = ProgressDialog(this)
         mDialog!!.setMessage("Uploading Please Wait.....")
         mDialog!!.setTitle("Loading")
@@ -101,11 +105,12 @@ class NotesUpload : AppCompatActivity() {
         try {
             mReference.putFile(uri).addOnSuccessListener{
 
-                taskSnapshot: UploadTask.TaskSnapshot? -> var url:Task<Uri> = taskSnapshot!!.getStorage().getDownloadUrl()
-                while (!url.isSuccessful());
-                   val downloadUrl: Uri? = url.getResult()
-                val up = UploadDetails(tid!!, tclass!!,downloadUrl.toString(),notesDes)
+                taskSnapshot: UploadTask.TaskSnapshot? -> val url:Task<Uri> = taskSnapshot!!.storage.downloadUrl
+                while (!url.isSuccessful);
+                   val downloadUrl: Uri? = url.result
                 val file = System.currentTimeMillis().toString()
+                val fnameWithExt = file.plus(filetype)
+                val up = UploadDetails(fnameWithExt,tid!!, tclass!!,downloadUrl.toString(),notesDes)
                 db.child("Uploads").child(file).setValue(up)
                 Toast.makeText(this, "File Successfully Uploaded", Toast.LENGTH_LONG).show()
                 Flag =true
