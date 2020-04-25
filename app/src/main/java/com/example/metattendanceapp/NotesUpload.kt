@@ -72,14 +72,14 @@ class NotesUpload : AppCompatActivity() {
         noti = findViewById(R.id.Fname)
         if (resultCode == Activity.RESULT_OK) {
             if (requestCode == PDF) {
-                uri = data!!.data
+                uri = data!!.data!!
 
                 noti!!.text = "Selected File: ${uri.lastPathSegment}"
                 val notDes = (NotesDes!!.text).toString()
                 filetype = ".pdf"
                 upload(notDes)
             } else if (requestCode == DOCX) {
-                uri = data!!.data
+                uri = data!!.data!!
                 noti!!.text = "Selected File: ${uri.lastPathSegment}"
                 val notDes = (NotesDes!!.text).toString()
                 filetype = ".docx"
@@ -91,7 +91,7 @@ class NotesUpload : AppCompatActivity() {
     }
     @RequiresApi(Build.VERSION_CODES.O)
     private fun upload(notesDes:String) {
-        val mReference = mStorageRef!!.child(uri.lastPathSegment)
+        val mReference = mStorageRef!!.child(uri.lastPathSegment!!)
 
         val bundle1 = intent.extras
         tclass = bundle1?.getString("class_selected")

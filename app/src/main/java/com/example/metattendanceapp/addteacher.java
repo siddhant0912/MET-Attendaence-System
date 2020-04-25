@@ -28,7 +28,7 @@ public class addteacher extends AppCompatActivity{
     EditText Tname;
     EditText Tid;
     EditText subject,tpassword;
-    String tname,tid,sub,classname,tpass;
+    String tname,tid,sub,classname,tpass,tepass;
     Spinner classes;
     private static long back_pressed;
     DatabaseReference databaseTeacher;
@@ -84,8 +84,9 @@ public class addteacher extends AppCompatActivity{
         tpass = tpassword.getText().toString();
 
         if (!(TextUtils.isEmpty(Tid.getText().toString()))) {
-            // String id = databaseTeacher.push().getKey();
-            Teacher teacher =new Teacher(tname ,tid ,sub ,classname,tpass);
+            tepass =Encrypt.encrypt(tpass);
+            Teacher teacher =new Teacher(tname ,tid ,sub ,classname,tepass);
+
             databaseTeacher.child(tid).setValue(teacher);
             Toast.makeText(getApplicationContext(),"Teacher added successfully", Toast.LENGTH_LONG).show();
             finish();

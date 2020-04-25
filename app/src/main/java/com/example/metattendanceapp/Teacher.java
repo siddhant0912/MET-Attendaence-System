@@ -34,7 +34,7 @@ public class Teacher {
         return classes;
     }
 
-    public String gettpass() {
-        return tpass;
-    }
+    public String gettpass() { return tpass; }
+
+    public String getdectpass(){ return Decrypt.decrypt(tpass);}
 }

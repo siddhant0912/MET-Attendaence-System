@@ -40,7 +40,7 @@ public class show_teachers extends ArrayAdapter<Teacher> {
         textviewtid.setText(teacher.getTid());
         textViewtname.setText(teacher.getTname());
         textviewstclass.setText(teacher.getClasses());
-        textviewpassowrd.setText(teacher.gettpass());
+        textviewpassowrd.setText(teacher.getdectpass());
         textviewsubject.setText(teacher.getSubject());
 
         return   listViewItem;

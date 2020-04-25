@@ -37,7 +37,7 @@ public class show_students extends ArrayAdapter<Student> {
         Student student = studentlist.get(position);
         textviewsid.setText(student.getSid());
         textviewsname.setText(student.getSname());
-        textViewspass.setText(student.getspass());
+        textViewspass.setText(student.getDecpass());
         textviewsclass.setText(student.getClasses());
 
         return   listViewItem;

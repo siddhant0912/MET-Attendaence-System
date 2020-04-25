@@ -2,6 +2,7 @@ package com.example.metattendanceapp;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -40,23 +41,24 @@ public class login_activity extends AppCompatActivity implements AdapterView.OnI
     EditText username;
     EditText password;
     String dbpassword;
+    String dpass;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         mAuth = FirebaseAuth.getInstance();
 
-        username = (EditText) findViewById(R.id.username);
-        password = (EditText) findViewById(R.id.password);
+        username = findViewById(R.id.username);
+        password = findViewById(R.id.password);
 
 
-        Spinner spinner = (Spinner) findViewById(R.id.spinner);
+        Spinner spinner = findViewById(R.id.spinner);
 
 
-        spinner.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) this);
+        spinner.setOnItemSelectedListener(this);
 
 
-        List<String> categories = new ArrayList<String>();
+        List<String> categories = new ArrayList<>();
         categories.add("Admin");
         categories.add("Teacher");
         categories.add("Student");
@@ -99,9 +101,14 @@ public class login_activity extends AppCompatActivity implements AdapterView.OnI
                     if (item == "Admin") {
                         mDialog.dismiss();
                         dbpassword = dataSnapshot.getValue(String.class);
-                        verify(dbpassword);
-
-
+                        if(dbpassword == null){
+                            String apass = Encrypt.encrypt(pass);
+                            ref.child("Admin").child("Admin").setValue(apass);
+                            Toast.makeText(getApplicationContext(), "Password For Admin Created", Toast.LENGTH_LONG).show();
+                        }else {
+                            String ap = Decrypt.decrypt(dbpassword);
+                            verify(ap);
+                        }
                     } else {
                         mDialog.dismiss();
                         if (item == "Student") {
@@ -112,7 +119,8 @@ public class login_activity extends AppCompatActivity implements AdapterView.OnI
                         }
 
                         dbpassword = dataSnapshot.child( dbchild).getValue(String.class);
-                        verify(dbpassword);
+                        dpass =Decrypt.decrypt(dbpassword);
+                        verify(dpass);
                     }
                 }
                 catch (Exception e)
@@ -129,12 +137,12 @@ public class login_activity extends AppCompatActivity implements AdapterView.OnI
     }
 
 
-    public void verify(String dbpassword){
+    public void verify(String dbpass){
         if(userid.isEmpty()) {
             Toast.makeText(getApplicationContext(),"Username cannot be empty", Toast.LENGTH_LONG).show();
         }
         else
-        if (item == "Teacher" && pass.equalsIgnoreCase(this.dbpassword)) {
+        if (item == "Teacher" && pass.equalsIgnoreCase(dbpass)) {
 
             mDialog.dismiss();
             Intent intent = new Intent(this, teacherlogin.class);
@@ -143,23 +151,23 @@ public class login_activity extends AppCompatActivity implements AdapterView.OnI
 
         }
 
-        else if (item == "Admin" && pass.equalsIgnoreCase(this.dbpassword) ) {
-           // if (userid.equalsIgnoreCase("admin") && pass.equals("admin")) {
+        else if (item == "Admin" && pass.equalsIgnoreCase(dbpass) ) {
             mDialog.dismiss();
             Toast.makeText(getApplicationContext(),"Log in successful",Toast.LENGTH_LONG).show();
             Intent intent = new Intent(this, admin.class);
             intent.putExtras(basket);
             startActivity(intent);
 
-            //}
+
         }
-        else if (item == "Student" && pass.equalsIgnoreCase(this.dbpassword)) {
+        else if (item == "Student" && pass.equalsIgnoreCase(dbpass)) {
             mDialog.dismiss();
             Intent intent = new Intent(this, studentlogin.class);
             intent.putExtras(basket);
             startActivity(intent);
         }
-        else if(! pass.equalsIgnoreCase(this.dbpassword)){
+        else if(! pass.equalsIgnoreCase(dbpass)){
+            Toast.makeText(getApplicationContext(),"password:" +dbpass, Toast.LENGTH_LONG).show();
             Toast.makeText(getApplicationContext(),"UserId or Password is Incorrect", Toast.LENGTH_LONG).show();
 
         }

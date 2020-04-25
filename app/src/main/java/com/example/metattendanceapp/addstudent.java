@@ -24,7 +24,7 @@ public class addstudent extends AppCompatActivity{
 
     EditText Sname;
     EditText Sid,spassword;
-    String sname,sid,classname,spass;
+    String sname,sid,classname,spass,epass;
     Spinner classes;
     DatabaseReference databaseStudent;
     ListView listViewstudent;
@@ -82,11 +82,13 @@ public class addstudent extends AppCompatActivity{
         if (!(TextUtils.isEmpty(Sid.getText().toString()))) {
 
             sname = Sname.getText().toString();
+
             sid = Sid.getText().toString();
             classname = classes.getSelectedItem().toString();
             spass = spassword.getText().toString();
+            epass =Encrypt.encrypt(spass);
 
-            Student student =new Student(sname ,sid,classname,spass );
+            Student student =new Student(sname ,sid,classname,epass );
             databaseStudent.child(sid).setValue(student);
             Toast.makeText(getApplicationContext(),"student added successfully", Toast.LENGTH_LONG).show();
             finish();

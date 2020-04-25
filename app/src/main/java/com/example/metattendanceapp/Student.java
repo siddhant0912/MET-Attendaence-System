@@ -32,7 +32,9 @@ public Student(){
     }
 
     public String getspass() {
-
     return spass;
+    }
+    public String getDecpass(){
+    return Decrypt.decrypt(spass);
     }
 }
